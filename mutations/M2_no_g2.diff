@@ -1,0 +1,10 @@
+--- a/ArgosGuard.lean
++++ b/ArgosGuard.lean
+@@ -124,7 +124,6 @@
+   w₁ : a ∈ t₁.writes
+   w₂ : b ∈ t₂.writes
+   g₁ : (b, vb) ∈ t₁.reads
+-  g₂ : (a, va) ∈ t₂.reads
+ 
+ /-- For every transaction stream (any order, any other transactions mixed in),
+ starting from any state no older than the one the guards refer to, the two

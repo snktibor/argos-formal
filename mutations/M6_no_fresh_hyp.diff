@@ -1,0 +1,16 @@
+--- a/ArgosGuard.lean
++++ b/ArgosGuard.lean
+@@ -131,10 +131,10 @@
+ mutually guarded revocations do not both commit. -/
+ theorem at_most_one {t₁ t₂ : Tx} {a b : Key} {va vb : Version}
+     (hg : MutuallyGuarded t₁ t₂ a b va vb) :
+-    ∀ (ts : List Tx) (s : State), va ≤ s a → vb ≤ s b →
++    ∀ (ts : List Tx) (s : State), vb ≤ s b →
+       ¬ (t₁ ∈ committed s ts ∧ t₂ ∈ committed s ts)
+-  | [], _, _, _ => by simp [committed]
+-  | u :: ts, s, ha, hb => by
++  | [], _, _ => by simp [committed]
++  | u :: ts, s, hb => by
+     unfold committed
+     split
+     · next hok =>

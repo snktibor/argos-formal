@@ -1,0 +1,10 @@
+--- a/ArgosGuard.lean
++++ b/ArgosGuard.lean
+@@ -120,7 +120,6 @@
+ /-- `t₁` revokes in registry `a` and guards registry `b` at version `vb`;
+ `t₂` revokes in `b` and guards `a` at version `va`. -/
+ structure MutuallyGuarded (t₁ t₂ : Tx) (a b : Key) (va vb : Version) : Prop where
+-  ne : t₁ ≠ t₂
+   w₁ : a ∈ t₁.writes
+   w₂ : b ∈ t₂.writes
+   g₁ : (b, vb) ∈ t₁.reads

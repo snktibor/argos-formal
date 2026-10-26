@@ -1,0 +1,11 @@
+--- a/ArgosGuard.lean
++++ b/ArgosGuard.lean
+@@ -36,7 +36,7 @@
+ 
+ /-- MVCC check: every key in the read set still has the version seen at endorsement. -/
+ def readsOk (s : State) (t : Tx) : Bool :=
+-  t.reads.all fun r => s r.1 == r.2
++  t.reads.all fun r => decide (r.2 ≤ s r.1)
+ 
+ /-- Effect of a committed transaction: every written key gets a new version. -/
+ def apply (s : State) (t : Tx) : State :=

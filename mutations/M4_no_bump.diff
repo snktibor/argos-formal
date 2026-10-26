@@ -1,0 +1,11 @@
+--- a/ArgosGuard.lean
++++ b/ArgosGuard.lean
+@@ -40,7 +40,7 @@
+ 
+ /-- Effect of a committed transaction: every written key gets a new version. -/
+ def apply (s : State) (t : Tx) : State :=
+-  fun k => if k ∈ t.writes then s k + 1 else s k
++  fun k => if k ∈ t.writes then s k else s k
+ 
+ def step (s : State) (t : Tx) : State :=
+   if readsOk s t then apply s t else s

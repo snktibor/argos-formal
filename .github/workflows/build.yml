@@ -1,0 +1,25 @@
+name: Lean build
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # --wfail turns warnings into errors, so a `sorry` fails the build.
+      # Axioms.lean fails the build if a main theorem picks up another axiom.
+      - name: Build the model and the proofs
+        uses: leanprover/lean-action@v1
+        with:
+          build-args: "--wfail"
+
+      - name: Check that every mutation breaks the proofs
+        run: ./mutations/check.sh

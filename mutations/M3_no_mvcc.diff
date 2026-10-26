@@ -1,0 +1,11 @@
+--- a/ArgosGuard.lean
++++ b/ArgosGuard.lean
+@@ -54,7 +54,7 @@
+ def committed : State → List Tx → List Tx
+   | _, [] => []
+   | s, t :: ts =>
+-    if readsOk s t then t :: committed (apply s t) ts
++    if true then t :: committed (apply s t) ts
+     else committed s ts
+ 
+ /-! ## Basic lemmas -/
