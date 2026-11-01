@@ -1,9 +1,6 @@
 # fabric-vdr-formal
 
-<!-- After the first Zenodo release, put the concept DOI from the record's DOI badge dialog into both
-     zenodo.TODO placeholders and uncomment the badge.
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.TODO.svg)](https://doi.org/10.5281/zenodo.TODO)
--->
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23867636.svg)](https://doi.org/10.5281/zenodo.23867636)
 
 A Lean 4 model of guarded revocation on a Hyperledger Fabric verifiable data registry (VDR), with machine-checked proofs.
 
@@ -37,8 +34,8 @@ The proofs reproduce exactly. They are deterministic, `lean-toolchain` pins Lean
 
 ## Results tag
 
-The paper cites commit `ae57a65`. Release `v1.0.0` adds packaging and metadata on top of it, and the Lean files and the mutations are unchanged. Later versions keep the theorems the paper cites.
-The Zenodo version DOI of `v1.0.0` is added here in the first update after the release (`v1.0.1`).
+The paper cites commit `ae57a65`. Release `v1.0.0` keeps those Lean files and the mutations unchanged, and adds the packaging and the [Java value and single-record subset](#java-value-and-single-record-subset). Later versions keep the theorems the paper cites.
+The Zenodo version of `v1.0.0` is [10.5281/zenodo.23867637](https://doi.org/10.5281/zenodo.23867637).
 
 ## Cite
 
@@ -51,8 +48,8 @@ Cite the concept DOI, which resolves to the newest version; the results tag abov
   year      = {2026},
   publisher = {Zenodo},
   version   = {1.0.0},
-  doi       = {10.5281/zenodo.TODO},
-  url       = {https://doi.org/10.5281/zenodo.TODO}
+  doi       = {10.5281/zenodo.23867636},
+  url       = {https://doi.org/10.5281/zenodo.23867636}
 }
 ```
 
