@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using these metadata."
+title: "argos-formal: a Lean 4 model and machine-checked proofs of guarded revocation on a Hyperledger Fabric verifiable data registry"
+type: software
+authors:
+  - family-names: Sinka
+    given-names: Tibor
+    affiliation: "Budapest University of Technology and Economics"
+repository-code: "https://github.com/snktibor/argos-formal"
+license: Apache-2.0
+keywords:
+  - lean4
+  - formal-verification
+  - hyperledger-fabric
+  - verifiable-data-registry
+  - revocation
