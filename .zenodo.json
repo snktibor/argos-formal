@@ -2,7 +2,7 @@
   "title": "fabric-vdr-formal: a Lean 4 model and machine-checked proofs of guarded revocation on a Hyperledger Fabric verifiable data registry",
   "description": "A Lean 4 model of guarded revocation on a Hyperledger Fabric verifiable data registry, with machine-checked proofs that two parties who guard each other's registries do not both commit their revocations. This is the formal artifact of the TDK paper <i>Decentralized verifiable credential revocation with atomic test-and-set for cross-organizational settings</i> (Tibor Sinka, BME, 2026): the model, the proofs, an axiom check and the mutations that show each part of the design is needed.",
   "upload_type": "software",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "Apache-2.0",
   "creators": [
     {
