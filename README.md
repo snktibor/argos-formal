@@ -1,4 +1,4 @@
-# argos-formal
+# fabric-vdr-formal
 
 A Lean 4 model of guarded revocation on a Hyperledger Fabric verifiable data registry (VDR), with machine-checked proofs.
 

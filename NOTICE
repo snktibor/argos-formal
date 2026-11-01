@@ -1,7 +1,7 @@
-argos-formal
-Copyright 2026 the argos-formal authors
+fabric-vdr-formal
+Copyright 2026 the fabric-vdr-formal authors
 
-This product includes software developed as part of the argos-formal
+This product includes software developed as part of the fabric-vdr-formal
 project, a Lean 4 model of guarded revocation on a Hyperledger Fabric
 Verifiable Data Registry, with machine-checked proofs.
 
