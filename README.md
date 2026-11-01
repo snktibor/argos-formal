@@ -1,10 +1,60 @@
 # fabric-vdr-formal
 
+<!-- After the first Zenodo release, put the concept DOI from the record's DOI badge dialog into both
+     zenodo.TODO placeholders and uncomment the badge.
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.TODO.svg)](https://doi.org/10.5281/zenodo.TODO)
+-->
+
 A Lean 4 model of guarded revocation on a Hyperledger Fabric verifiable data registry (VDR), with machine-checked proofs.
 
 A guarded revocation is one transaction that revokes a credential only if a list of other revocation registries, the guards, still have the versions the caller saw when it checked them. If two parties guard each other's registries, at most one of their revocations commits. A query followed by an unconditional revocation leaves a time-of-check-to-time-of-use (TOCTOU) window between the two steps, and the guarded revocation closes it.
 
 The model and the proofs belong to the TDK paper *Decentralized verifiable credential revocation with atomic test-and-set for cross-organizational settings* (Tibor Sinka, Budapest University of Technology and Economics, 2026). The chaincode operation that implements guarded revocation, `updateRevRegEntryIfGuardsUnchanged`, is in [fabric-vdr-core](https://github.com/snktibor/fabric-vdr-core).
+
+## Reproduce
+
+With only Docker installed:
+
+```bash
+docker run --rm --user "$(id -u):$(id -g)" ghcr.io/snktibor/fabric-vdr-reproduce:v1.0.1 formal
+```
+
+The image comes from [`fabric-vdr-core`](https://github.com/snktibor/fabric-vdr-core), the chaincode repository of the same paper. It holds this repository at commit `ae57a65`, the one the paper cites, and runs `lake build --wfail` and `./mutations/check.sh`. To run them from a clone, see [Building](#building).
+
+## Results map
+
+One row per figure and table of the paper that this repository reproduces, all of them in the appendix. [Theorems and where the paper uses them](#theorems-and-where-the-paper-uses-them) maps each theorem to its section. All three rows together take under a minute in the image above.
+
+| Paper | Command | Output |
+|---|---|---|
+| Figure "A machine-checked theorem proves each security goal" | `lake build --wfail` | The console output. `Axioms.lean` fails the build on a `sorry` or an extra axiom. |
+| Table "Further named results of the Lean model" | `lake build --wfail` | The same console output. |
+| Table "The mutants of the Lean model" | `lake build --wfail`, `./mutations/check.sh` | The console output of `check.sh` for M1 to M8, and the counterexamples M9 and M10 in `Counterexamples.lean`. |
+
+## Reproduction limits
+
+The proofs reproduce exactly. They are deterministic, `lean-toolchain` pins Lean 4.23.0, and they need no seeds, secrets or special hardware. Elan needs network access once, to download the toolchain.
+
+## Results tag
+
+The paper cites commit `ae57a65`. Release `v1.0.0` adds packaging and metadata on top of it, and the Lean files and the mutations are unchanged. Later versions keep the theorems the paper cites.
+The Zenodo version DOI of `v1.0.0` is added here in the first update after the release (`v1.0.1`).
+
+## Cite
+
+Cite the concept DOI, which resolves to the newest version; the results tag above names the commit the paper cites. [CITATION.cff](CITATION.cff) holds the same metadata.
+
+```bibtex
+@software{sinka2026fabricvdrformal,
+  author    = {Sinka, Tibor},
+  title     = {fabric-vdr-formal: a {Lean}~4 model and machine-checked proofs of guarded revocation on a {Hyperledger} {Fabric} verifiable data registry},
+  year      = {2026},
+  publisher = {Zenodo},
+  version   = {1.0.0},
+  doi       = {10.5281/zenodo.TODO},
+  url       = {https://doi.org/10.5281/zenodo.TODO}
+}
+```
 
 ## Building
 
@@ -17,6 +67,8 @@ Install [elan](https://github.com/leanprover/elan) and run `lake build` in the r
 The GitHub workflow runs `lake build --wfail`, which also fails on warnings such as `declaration uses 'sorry'`, and then `./mutations/check.sh`.
 
 ## Files
+
+The `Argos` prefix of the Lean files and the namespace is the project's working name.
 
 | File | Contents |
 |---|---|
