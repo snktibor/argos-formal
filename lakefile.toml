@@ -1,4 +1,4 @@
-name = "argos_formal"
+name = "fabric_vdr_formal"
 defaultTargets = ["Argos"]
 
 [[lean_lib]]
