@@ -10,7 +10,7 @@ The model and the proofs belong to the TDK paper *Decentralized verifiable crede
 
 Install [elan](https://github.com/leanprover/elan) and run `lake build` in the repository root. Elan installs Lean 4.23.0, the version in `lean-toolchain`. The project uses only the Lean core library, without Mathlib.
 
-`lake build` checks every proof. `Axioms.lean` states the axioms of each main theorem with `#guard_msgs`, so the build fails if a theorem comes to depend on `sorryAx`, on `Lean.ofReduceBool`, which `native_decide` adds, or on any custom axiom. With Lean 4.23.0, every main theorem uses only `propext` and `Quot.sound`. `rejected_detectable` and `rejected_has_prior_committed_writer` also use `Classical.choice`.
+`lake build` checks every proof. `Axioms.lean` and `JavaValuesAxioms.lean` state the axioms of each main theorem with `#guard_msgs`, so the build fails if a theorem comes to depend on `sorryAx`, on `Lean.ofReduceBool`, which `native_decide` adds, or on any custom axiom. With Lean 4.23.0, every main theorem uses only `propext` and `Quot.sound`. `rejected_detectable`, `rejected_has_prior_committed_writer` and `normal_update_version_bounds` also use `Classical.choice`.
 
 `./mutations/check.sh` applies eight mutations to `ArgosGuard.lean` one at a time and checks that each mutated model fails to build. Each mutation removes one part of the design or one hypothesis, for example the guard on one side or the MVCC read check.
 
@@ -25,7 +25,14 @@ The GitHub workflow runs `lake build --wfail`, which also fails on warnings such
 | `ArgosToctou.lean` | Time and revocation status, `tas_spec`, `window_closed`, `check_holds_at_use`, `no_bifurcation` and `toctou_attack_unguarded` |
 | `Counterexamples.lean` | Counterexamples for the mutations, and witnesses that the bounds are sharp and the hypotheses can hold |
 | `Axioms.lean` | The axiom check |
+| `JavaValues.lean`, `JavaValuesProofs.lean` | Nullable UTF-16 value encoding and 18 representation lemmas |
+| `JavaRecordUpdate.lean` | Conditional single-record refinement to `Argos.apply` |
+| `JavaValuesAxioms.lean` | Axiom checks for the value/update subset |
 | `mutations/` | The eight mutations of `ArgosGuard.lean` as patches, and `check.sh` |
+
+## Java value and single-record subset
+
+[The subset proof](docs/java-correspondence-subset.md) connects a record update satisfying an explicit value-level contract to the existing `Argos.apply` transition for a singleton write set. It also preserves the complete encoded record image. It does **not** prove that Java execution satisfies that contract or establish correspondence for the guarded caller. The original protocol model and proofs are unchanged.
 
 ## The model
 

@@ -3,4 +3,4 @@ defaultTargets = ["Argos"]
 
 [[lean_lib]]
 name = "Argos"
-roots = ["ArgosGuard", "ArgosGuardExt", "ArgosToctou", "Counterexamples", "Axioms"]
+roots = ["ArgosGuard", "ArgosGuardExt", "ArgosToctou", "Counterexamples", "Axioms", "JavaValues", "JavaValuesProofs", "JavaValuesAxioms", "JavaRecordUpdate"]
